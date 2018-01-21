@@ -97,18 +97,14 @@ static void	ft_mlximg_bpp24(t_mlx *mlx, char *pxpt, unsigned int color_code)
 	}
 }
 
-void		*ft_mlximg_nav(t_mlx *mlx, int x, int y)
+void		*ft_mlximg_nav(t_mlx *mlx, t_frame *frame, int x, int y)
 {
 	void	*line;
-	t_frame	*frame;
 	int		first_byte;
 
 	line = NULL;
 	first_byte = -1;
-	frame = NULL;
-	if (mlx)
-		frame = &(mlx->frame);
-	if (frame && frame->frameData && mlx->bppx && mlx->bpln)
+	if (mlx && frame && frame->frameData && mlx->bppx && mlx->bpln)
 	{
 		line = (frame->frameData + (mlx->bpln * y));
 		if (line)
@@ -137,12 +133,11 @@ void	ft_framebuffer_forget(t_env *env)
 	}
 }
 
-void	ft_mlx_ppp(t_env *env, int x, int y, t_pix color)
+void	ft_mlx_ppp(t_env *env, t_frame *frame, int x, int y, t_pix color)
 {
 	char			*pxpt;
 	unsigned char	*cl;
 	unsigned int	color_code;
-	t_frame			*frame;
 
 	pxpt = NULL;
 	color_code = 0;
@@ -151,10 +146,9 @@ void	ft_mlx_ppp(t_env *env, int x, int y, t_pix color)
 	cl[1] = color.g;
 	cl[2] = color.b;
 	cl[3] = color.alpha;
-	frame = env ? &(env->mlx.frame) : NULL;
-	if (frame && color_code)
+	if (env && frame && color_code)
 	{
-		pxpt = (char*)ft_mlximg_nav(&(env->mlx), x, y);
+		pxpt = (char*)ft_mlximg_nav(&(env->mlx), frame,  x, y);
 		color_code = mlx_get_color_value(env->mlx.mlx, color_code);
 		if (color_code && pxpt)
 		{

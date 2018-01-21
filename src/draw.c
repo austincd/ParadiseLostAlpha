@@ -1,5 +1,5 @@
 #include "../inc/p-lost.h"
-void drawHorizontal(t_env *env, int x1, int x2, int y)
+void drawHorizontal(t_env *env, t_frame *frame, int x1, int x2, int y)
 {
 	int x;
 	t_pix color;
@@ -9,17 +9,17 @@ void drawHorizontal(t_env *env, int x1, int x2, int y)
 	color.g = 255;
 	color.b = 255;
 	color.alpha = 0;
-	if (env)
+	if (env && frame)
 	{
 		while (x < x2)
 		{
-			ft_mlx_ppp(env, x, y, color);
+			ft_mlx_ppp(env, frame, x, y, color);
 			++x;
 		}
 	}
 }
 
-void drawVertical(t_env *env, int y1, int y2, int x)
+void drawVertical(t_env *env, t_frame *frame, int y1, int y2, int x)
 {
 	int y;
 	t_pix color;
@@ -29,17 +29,17 @@ void drawVertical(t_env *env, int y1, int y2, int x)
 	color.g = 255;
 	color.b = 255;
 	color.alpha = 0;
-	if (env)
+	if (env && frame)
 	{
 		while (y < y2)
 		{
-			ft_mlx_ppp(env, x, y, color);
+			ft_mlx_ppp(env, frame, x, y, color);
 			++y;
 		}
 	}
 }
 
-void	drawGrid(t_env *env)
+void	drawGrid(t_env *env, t_frame *frame)
 {
 	int	origin;
 	int counter;
@@ -48,9 +48,8 @@ void	drawGrid(t_env *env)
 	origin = env->gridSize / 2;
 	while (counter < 33)
 	{
-		drawHorizontal(env, origin, (origin + env->gridSize * 32), (origin + env->gridSize * counter));
-		drawVertical(env, origin, (origin + env->gridSize * 32), (origin + env->gridSize * counter));
+		drawHorizontal(env, frame, origin, (origin + env->gridSize * 32), (origin + env->gridSize * counter));
+		drawVertical(env, frame, origin, (origin + env->gridSize * 32), (origin + env->gridSize * counter));
 		++counter;
-		printf("counter is %d\n", counter);
 	}
 }

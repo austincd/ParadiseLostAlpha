@@ -69,6 +69,7 @@ typedef struct  s_mlx{
 
 typedef struct	s_env
 {
+	t_frame	views[4];
 	int			gridSize;
 	int 		resX;
 	int 		resY;
@@ -76,9 +77,9 @@ typedef struct	s_env
 }				t_env;
 
 void	ft_framebuffer_forget(t_env *env);
-void	ft_mlx_ppp(t_env *env, int x, int y, t_pix color);
-void	drawGrid(t_env *env);
-void	drawVertical(t_env *env, int y1, int y2, int x);
-void	drawHorizontal(t_env *env, int x1, int x2, int y);
+void	ft_mlx_ppp(t_env *env, t_frame *frame, int x, int y, t_pix color);
+void	drawGrid(t_env *env, t_frame *frame);
+void	drawVertical(t_env *env, t_frame *frame, int y1, int y2, int x);
+void	drawHorizontal(t_env *env, t_frame *frame, int x1, int x2, int y);
 
 #endif
