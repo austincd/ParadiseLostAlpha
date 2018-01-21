@@ -14,6 +14,8 @@ NAME = plostalpha
 
 SRCS = \
 		main.c			\
+		framebuffer_ops.c \
+		draw.c		\
 
 all: $(NAME)
 

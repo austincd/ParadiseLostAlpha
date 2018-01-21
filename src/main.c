@@ -2,6 +2,7 @@
 
 void	prepare(t_env *env)
 {
+	env->gridSize = 15;
 	env->resX = 1024;
 	env->resY = 1024;
 	env->mlx.mlx = mlx_init();
@@ -18,5 +19,8 @@ int main()
 	prepare(&env);
 	while(1)
 	{
+		drawGrid(&env);
+		mlx_put_image_to_window(env.mlx.mlx, env.mlx.win, env.mlx.frame.framePtr, 0, 0);
+		ft_framebuffer_forget(&env);
 	}
 }

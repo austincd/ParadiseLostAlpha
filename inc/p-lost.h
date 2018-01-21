@@ -1,6 +1,10 @@
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-#include "../minilibx/mlx_keys_macos.h"
+#ifndef PLOST_H
+# define PLOST H
+# include <stdio.h>
+# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
+# include "../minilibx/mlx_keys_macos.h"
+# define WHITE 0xFFFFFF
 
 /*
 typedef struct		s_combatant
@@ -39,6 +43,14 @@ typedef struct	s_party
 {
 }
 */
+
+typedef struct	s_pix{
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+	unsigned char	alpha;
+}				t_pix;
+
 typedef struct  s_frame{
 	int     resX;
 	int     resY;
@@ -57,7 +69,16 @@ typedef struct  s_mlx{
 
 typedef struct	s_env
 {
+	int			gridSize;
 	int 		resX;
 	int 		resY;
 	t_mlx		mlx;
 }				t_env;
+
+void	ft_framebuffer_forget(t_env *env);
+void	ft_mlx_ppp(t_env *env, int x, int y, t_pix color);
+void	drawGrid(t_env *env);
+void	drawVertical(t_env *env, int y1, int y2, int x);
+void	drawHorizontal(t_env *env, int x1, int x2, int y);
+
+#endif
