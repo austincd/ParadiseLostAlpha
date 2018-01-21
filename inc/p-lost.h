@@ -1,5 +1,8 @@
 #include "../libft/libft.h"
+#include "../minilibx/mlx.h"
+#include "../minilibx/mlx_keys_macos.h"
 
+/*
 typedef struct		s_combatant
 {
 	char			active;
@@ -18,10 +21,6 @@ typedef struct	s_floor
 	char		**explored;
 }				t_floor;
 
-typedef struct	s_enemy
-{
-}				t_enemy;
-
 typedef struct	s_encounter
 {
 	int 		numEnemies;
@@ -39,9 +38,26 @@ typedef struct	s_encounter
 typedef struct	s_party
 {
 }
+*/
+typedef struct  s_frame{
+	int     resX;
+	int     resY;
+	void	*framePtr;
+	void	*frameData;
+}				t_frame;
 
-typedef struct	s_plost
+typedef struct  s_mlx{
+	void		*mlx;
+	void		*win;
+	int			bppx;
+	int			endi;
+	int			bpln;
+    t_frame     frame;                                                                    
+}               t_mlx;
+
+typedef struct	s_env
 {
-	int			resX;
-	int			resY;
-}				t_plost;
+	int 		resX;
+	int 		resY;
+	t_mlx		mlx;
+}				t_env;

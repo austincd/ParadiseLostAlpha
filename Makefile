@@ -10,20 +10,10 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = wolf
+NAME = plostalpha
 
 SRCS = \
 		main.c			\
-		read.c			\
-		movement.c		\
-		io.c			\
-		timing.c		\
-		actors.c		\
-		rays.c			\
-		framebuffer_ops.c\
-		rendering.c		\
-		phys.c			\
-		maneuver.c
 
 all: $(NAME)
 
@@ -31,7 +21,7 @@ $(NAME): lib mlx
 
 	@cd src && clang -Wall -Wextra -Werror -c $(SRCS) -g
 	cd src && clang $(SRCS:.c=.o) -g -L../minilibx -lmlx -framework OpenGL -framework Appkit -L../libft -lftprintf -o $(NAME)
-	mv src/wolf .
+	mv src/$(NAME) .
 
 lib:
 	@cd libft && make
