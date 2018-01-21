@@ -67,6 +67,21 @@ typedef struct  s_mlx{
     t_frame     frame;                                                                    
 }               t_mlx;
 
+typedef struct	s_kb
+{
+	char		exit;
+	char		up;
+	char		down;
+	char		left;
+	char		right;
+	char		targetFriendly;
+	char		startChain;
+	char		leftNormal;
+	char		leftSpecial;
+	char		rightNormal;
+	char		rightSpecial;
+}				t_kb;
+
 typedef struct	s_env
 {
 	t_frame	views[4];
@@ -74,11 +89,16 @@ typedef struct	s_env
 	int 		resX;
 	int 		resY;
 	t_mlx		mlx;
+	int			inBattle;
+	int			targetFriendly;
+	double		chainTime;
+	double		turnTime;
 }				t_env;
 
 void	ft_framebuffer_forget(t_env *env);
 void	ft_mlx_ppp(t_env *env, t_frame *frame, int x, int y, t_pix color);
 void	drawGrid(t_env *env, t_frame *frame);
+void	drawBattleUnderlay(t_env *env, t_frame *frame);
 void	drawVertical(t_env *env, t_frame *frame, int y1, int y2, int x);
 void	drawHorizontal(t_env *env, t_frame *frame, int x1, int x2, int y);
 

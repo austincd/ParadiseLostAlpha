@@ -44,7 +44,7 @@ int main()
 	{
 		drawGrid(&env, env.views);
 		drawGrid(&env, env.views + 2);
-		drawGrid(&env, env.views + 1);
+		drawBattleUnderlay(&env, env.views + 1);
 		drawGrid(&env, env.views + 3);
 		drawViews(&env);
 //		ft_framebuffer_forget(&env);

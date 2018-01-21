@@ -16,6 +16,7 @@ SRCS = \
 		main.c			\
 		framebuffer_ops.c \
 		draw.c		\
+		drawBattle.c		\
 
 all: $(NAME)
 
