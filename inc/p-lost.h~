@@ -1,0 +1,7 @@
+#include "../libft/libft.h"
+
+typedef struct	s_plost
+{
+	int			resX;
+	int			resX;
+}				t_plost;
