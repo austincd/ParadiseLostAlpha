@@ -21,7 +21,8 @@ SRCS = \
 		io.c \
 		timing.c \
 		move.c	\
-		loading.c
+		loading.c		\
+		imageTools.c
 
 all: $(NAME)
 

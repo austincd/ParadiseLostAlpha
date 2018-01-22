@@ -146,11 +146,11 @@ void	ft_mlx_ppp(t_env *env, t_frame *frame, int x, int y, t_pix color)
 	cl[1] = color.g;
 	cl[2] = color.b;
 	cl[3] = color.alpha;
-	if (env && frame && color_code)
+	if (env && frame)
 	{
 		pxpt = (char*)ft_mlximg_nav(&(env->mlx), frame,  x, y);
 		color_code = mlx_get_color_value(env->mlx.mlx, color_code);
-		if (color_code && pxpt)
+		if (pxpt)
 		{
 			if (env->mlx.bppx == 32)
 				*((unsigned int*)pxpt) = color_code;

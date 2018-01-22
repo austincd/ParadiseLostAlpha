@@ -50,8 +50,13 @@ int main()
 	t_pix color2;
 	t_pix color3;
 	t_pix color4;
+	t_file texture;
 
+	ft_bzero(&texture, sizeof(t_file));
+	ft_strcat(texture.path, "assets/images/arrowUp");
+	texture.fd = ft_open_file(texture.path);
 	ft_bzero(&env, sizeof(env));
+	env.textures[0] = loadImage(texture.fd, 32, 32);
 	color1.r = 100;
 	color1.g = 150;
 	color1.b = 100;
@@ -76,6 +81,11 @@ int main()
 	env.alliedParty[1].active = 1;
 	env.alliedParty[2].active = 1;
 	env.alliedParty[3].active = 1;
+	color1.r = 255;
+	color1.g = 255;
+	color1.b = 255;
+	env.texPalette[0] = color1;
+	env.texPalette[1] = color1;
 	mlx_loop(env.mlx.mlx);
 }
 

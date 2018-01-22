@@ -49,6 +49,12 @@ typedef struct	s_pt
 	int y;
 }				t_pt;
 
+typedef struct  s_tex{
+	int     resX;
+	int     resY;
+	char	**data;
+}				t_tex;
+
 typedef struct  s_frame{
 	int     resX;
 	int     resY;
@@ -122,6 +128,8 @@ typedef struct	s_env
 	int tickLength;
 	t_kb	keys;
 	int tickRate;
+	t_tex		textures[32];
+	t_pix		texPalette[32];
 }				t_env;
 
 typedef struct	s_option
@@ -167,5 +175,7 @@ void	ft_moveLeft(t_env *env);
 void	ft_moveRight(t_env *env);
 void	loadFloor(t_env *env);
 void	readFloor(t_env *env);
+t_tex	loadImage(int fd, int resX, int resY);
+void	applyImage(t_env *env, t_frame *frame, int x1, int y1, t_tex img);
 
 #endif

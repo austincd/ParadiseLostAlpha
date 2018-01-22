@@ -19,6 +19,10 @@ void	drawBattleUnderlay(t_env *env, t_frame *frame)
 		drawVertical(env, frame, frame->resY - (frame->resY / 12 + frame->resY / 6), frame->resY - ((frame->resY / 12)), frame->resX / 8 + (frame->resX / 16) * 6);
 		drawVertical(env, frame, frame->resY - (frame->resY / 12 + frame->resY / 6), frame->resY - ((frame->resY / 12)), frame->resX / 8 + (frame->resX / 16) * 9);
 		coloredRectangles(env, frame);
+		applyImage(env, frame, 96, 240, env->textures[0]);
+		applyImage(env, frame, 192, 240, env->textures[0]);
+		applyImage(env, frame, 282, 240, env->textures[0]);
+		applyImage(env, frame, 384, 240, env->textures[0]);
 	}
 }
 
