@@ -117,7 +117,7 @@ void		*ft_mlximg_nav(t_mlx *mlx, t_frame *frame, int x, int y)
 	return (line + first_byte);
 }
 
-void	ft_framebuffer_forget(t_env *env)
+void	ft_framebuffer_forget(t_env *env, t_frame *frame)
 {
 	int		num_bytes;
 	t_mlx	*mlx;
@@ -125,10 +125,10 @@ void	ft_framebuffer_forget(t_env *env)
 	num_bytes = 0;
 	if (env && (mlx = &(env->mlx)))
 	{
-		if (mlx && mlx->frame.framePtr && mlx->frame.frameData)
+		if (mlx && frame->framePtr && frame->frameData)
 		{
-			num_bytes = mlx->bpln * env->resY;
-			ft_bzero(mlx->frame.frameData, num_bytes);
+			num_bytes = mlx->bpln * frame->resY;
+			ft_bzero(frame->frameData, num_bytes);
 		}
 	}
 }

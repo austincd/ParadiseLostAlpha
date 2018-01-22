@@ -17,6 +17,11 @@ SRCS = \
 		framebuffer_ops.c \
 		draw.c		\
 		drawBattle.c		\
+		drawDungeon.c \
+		io.c \
+		timing.c \
+		move.c	\
+		loading.c
 
 all: $(NAME)
 

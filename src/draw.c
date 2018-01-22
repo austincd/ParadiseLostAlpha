@@ -6,8 +6,8 @@ void drawHorizontal(t_env *env, t_frame *frame, int x1, int x2, int y)
 
 	x = x1;
 	color.r = 255;
-	color.g = 255;
-	color.b = 255;
+	color.g = 150;
+	color.b = 150;
 	color.alpha = 0;
 	if (env && frame)
 	{
@@ -26,8 +26,8 @@ void drawVertical(t_env *env, t_frame *frame, int y1, int y2, int x)
 
 	y = y1;
 	color.r = 255;
-	color.g = 255;
-	color.b = 255;
+	color.g = 150;
+	color.b = 150;
 	color.alpha = 0;
 	if (env && frame)
 	{
@@ -51,5 +51,16 @@ void	drawGrid(t_env *env, t_frame *frame)
 		drawHorizontal(env, frame, origin, (origin + env->gridSize * 32), (origin + env->gridSize * counter));
 		drawVertical(env, frame, origin, (origin + env->gridSize * 32), (origin + env->gridSize * counter));
 		++counter;
+	}
+}
+
+void	drawBorder(t_env *env, t_frame *frame)
+{
+	if (env && frame)
+	{
+		drawHorizontal(env, frame, 0, frame->resX - 1, 0);
+		drawHorizontal(env, frame, 0, frame->resX - 1, frame->resY - 1);
+		drawVertical(env, frame, 0, frame->resY - 1, 0);
+		drawVertical(env, frame, 0, frame->resY - 1, frame->resX - 1);
 	}
 }

@@ -27,6 +27,10 @@ void		ft_hooks(t_env *env)
 
 int		ft_loop(t_env *env)
 {
+	drawSelf(env, env->views);
+	drawGrid(env, env->views);
+	drawBattleUnderlay(env, env->views + 1);
+	drawViews(env);
 	if (env->inBattle)
 		ft_battleControl(env);
 	else
@@ -41,25 +45,13 @@ int		key_release_hook(int keycode, t_env *env)
 	if (keycode == KEY_ESCAPE || keycode == KEY_SHIFT_LEFT)
 		;
 	else if (keycode == KEY_W)
-		env->keys.forward = 0;
+		env->keys.up = 0;
 	else if (keycode == KEY_A)
 		env->keys.left = 0;
 	else if (keycode == KEY_S)
-		env->keys.backward = 0;
+		env->keys.down = 0;
 	else if (keycode == KEY_D)
 		env->keys.right = 0;
-	else if (keycode == KEY_LEFT)
-	{
-		if (env->keys.turnLeft < (env->tickRate / 2))
-			env->keys.fadeLeft = 1;
-		env->keys.turnLeft = 0;
-	}
-	else if (keycode == KEY_RIGHT)
-	{
-		if (env->keys.turnRight < (env->tickRate / 2))
-			env->keys.fadeRight = 1;
-		env->keys.turnRight = 0;
-	}
 	return (0);
 }
 
@@ -70,17 +62,13 @@ int		key_press_hook(int keycode, t_env *env)
 	if (keycode == KEY_SPACEBAR)
 		;//ft_attack(env);
 	else if (keycode == KEY_W)
-		env->keys.forward += 1;
+		env->keys.up = 1;
 	else if (keycode == KEY_A)
-		env->keys.left += 1;
+		env->keys.left = 1;
 	else if (keycode == KEY_S)
-		env->keys.backward += 1;
+		env->keys.down = 1;
 	else if (keycode == KEY_D)
-		env->keys.right += 1;
-	else if (keycode == KEY_LEFT)
-		env->keys.turnLeft += 1;//ft_fade_left(env);
-	else if (keycode == KEY_RIGHT)
-		env->keys.turnRight += 1;//ft_fade_right(env);
+		env->keys.right = 1;
 	return (0);
 }
 
@@ -90,39 +78,41 @@ void			ft_battleControl(t_env *env)
 	{
 		if (env->keys.targetFriendly)
 			env->targetFriendly = 1;
-		if (env->keys.targetUp)
+		if (env->keys.up)
 			env->target = 0;
-		else if (env->keys.targetDown)
+		else if (env->keys.down)
 			env->target = 1;
-		else if (env->keys.targetLeft)
+		else if (env->keys.left)
 			env->target = 2;
-		else if (env->keys.targetRight)
+		else if (env->keys.right)
 			env->target = 3;
-		if (env->keys.leftNormal)
-			player_leftNormal(env);
-		else if (env->keys.leftSpecial)
-			player_leftSpecial(env);
-		else if (env->keys.rightNormal)
-			player_rightNormal(env);
-		else if (env->keys.rightSpecial)
-			player_rightSpecial(env);
+//		if (env->keys.leftNormal)
+//			player_leftNormal(env);
+//		else if (env->keys.leftSpecial)
+//			player_leftSpecial(env);
+//		else if (env->keys.rightNormal)
+//			player_rightNormal(env);
+//		else if (env->keys.rightSpecial)
+//			player_rightSpecial(env);
 	}
 }
 
-void			ft_dungoenControl(t_env *env)
+void			ft_dungeonControl(t_env *env)
 {
 	if (env)
 	{
-		if (env->keys.forward)
+
+		if (env->keys.up)
 			ft_moveUp(env);
-		if (env->keys.backward)
+		if (env->keys.down)
 			ft_moveDown(env);
-		if (env->keys.fadeLeft == 1)
+		if (env->keys.left == 1)
 			ft_moveLeft(env);
-		if (env->keys.fadeRight == 1)
+		if (env->keys.right == 1)
 			ft_moveRight(env);
 		if (!env->chainTime && env->keys.startChain)
-			ft_startChain(env);
+			;
+//			ft_startChain(env);
 	}
 }
 
@@ -134,8 +124,8 @@ int		exit_hook(t_env *env)
 	if (env)
 	{
 		if (env->mlx.mlx && env->mlx.win)
-			mlx_destroy_window(env->mlx.mlx, env->mlx.win);
-		mlx_destroy_image(env->mlx.mlx, env->mlx.frame.framePtr);
+//			mlx_destroy_window(env->mlx.mlx, env->mlx.win);
+//		mlx_destroy_image(env->mlx.mlx, env->mlx.frame.framePtr);
 		ft_bzero(env, sizeof(t_env));
 	}
 	exit(0);
