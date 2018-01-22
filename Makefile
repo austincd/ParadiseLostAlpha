@@ -22,7 +22,8 @@ SRCS = \
 		timing.c \
 		move.c	\
 		loading.c		\
-		imageTools.c
+		imageTools.c	\
+		chain.c
 
 all: $(NAME)
 

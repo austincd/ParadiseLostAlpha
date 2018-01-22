@@ -21,6 +21,7 @@ typedef struct	s_floor
 	char		**map;
 	char		**explored;
 	t_pix	palette[64];
+	t_pix	chainColor;
 }				t_floor;
 /*
 typedef struct	s_encounter
@@ -84,6 +85,7 @@ typedef struct  s_mlx{
 
 typedef struct	s_kb
 {
+	char		toggleMode;
 	char		exit;
 	char		up;
 	char		down;
@@ -146,6 +148,7 @@ typedef struct	s_menu
 	int			numLines;
 }				t_menu;
 
+void	startChain(t_env *env);
 void	drawBorder(t_env *env, t_frame *frame);
 void	drawViews(t_env *env);
 int		key_release_hook(int keycode, t_env *env);

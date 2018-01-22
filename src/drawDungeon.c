@@ -47,8 +47,10 @@ void	drawFloor(t_env *env, t_frame *frame)
 		{
 			if (env->floor.map[y][x])
 			{
-				if (env->floor.explored[y][x])
+				if (env->floor.explored[y][x] == 1)
 					fillGridSquare(env, frame, x, y, env->floor.palette[(int)(env->floor.map[y][x])]);
+				else if (env->floor.explored[y][x] == 2)
+					fillGridSquare(env, frame, x, y, env->floor.chainColor);
 				else
 					fillGridSquare(env, frame, x, y, fog);
 			}

@@ -16,10 +16,11 @@ void	ft_expire(t_env *env, long double *value)
 {
 	if (env && value)
 	{
-		if (*value <= ((double)env->tickLength / 1000000))
+		printf("env->tickLength = %d\n", env->tickLength);
+		if (*value <= ((double)env->tickLength / 1000))
 			*value = 0;
 		else
-			*value -= ((double)env->tickLength / 1000000);
+			*value -= ((double)env->tickLength / 1000);
 	}
 }
 
@@ -40,6 +41,6 @@ void	ft_timing(t_env *env)
 	if (env)
 	{
 		temp /= env->tickRate;
-		env->tickLength = (int)(temp * 1000000);
+		env->tickLength = (int)(temp * 1000);
 	}
 }

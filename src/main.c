@@ -8,6 +8,7 @@ void	prepare(t_env *env)
 	env->tileFile.fd = ft_open_file(env->tileFile.path);
 	counter = 0;
 	env->gridSize = 15;
+	env->tickRate = 60;
 	env->resX = 1024;
 	env->resY = 1024;
 	env->mlx.mlx = mlx_init();
@@ -76,6 +77,7 @@ int main()
 	loadFloor(&env);
 	ft_hooks(&env);
 	env.floor.palette[1] = color2;
+	env.floor.chainColor = color1;
 	env.alliedParty[0].color = color4;
 	env.alliedParty[1].color = color2;
 	env.alliedParty[2].color = color3;

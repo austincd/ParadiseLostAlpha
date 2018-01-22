@@ -7,6 +7,8 @@ void ft_moveUp(t_env *env)
 	{
 		env->posY -= 1;
 		env->floor.explored[env->posY][env->posX] = 1;
+		if (env->chainTime)
+			env->floor.explored[env->posY][env->posX] = 2;
 	}
 }
 
@@ -17,6 +19,8 @@ void ft_moveDown(t_env *env)
 	{
 		env->posY += 1;
 		env->floor.explored[env->posY][env->posX] = 1;
+		if (env->chainTime)
+			env->floor.explored[env->posY][env->posX] = 2;
 	}
 }
 
@@ -27,6 +31,8 @@ void ft_moveRight(t_env *env)
 	{
 		env->posX += 1;
 		env->floor.explored[env->posY][env->posX] = 1;
+		if (env->chainTime)
+			env->floor.explored[env->posY][env->posX] = 2;
 	}
 }
 
@@ -37,5 +43,7 @@ void ft_moveLeft(t_env *env)
 	{
 		env->posX -= 1;
 		env->floor.explored[env->posY][env->posX] = 1;
+		if (env->chainTime)
+			env->floor.explored[env->posY][env->posX] = 2;
 	}
 }
