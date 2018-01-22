@@ -21,7 +21,9 @@ void	drawBattleUnderlay(t_env *env, t_frame *frame)
 		coloredRectangles(env, frame);
 		applyImage(env, frame, 96, 240, env->textures[0]);
 		applyImage(env, frame, 192, 240, env->textures[0]);
-		applyImage(env, frame, 282, 240, env->textures[0]);
+		applyImage(env, frame, 282, 240, env->textures[1]);
+//		printf("%s\n%s\n", env->textures[1].data[0], env->textures[1].data[1]);
+//		getchar();
 		applyImage(env, frame, 384, 240, env->textures[0]);
 	}
 }
