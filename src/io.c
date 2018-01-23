@@ -38,13 +38,12 @@ int		ft_loop(t_env *env)
 		ft_dungeonControl(env);
 	usleep(env->tickLength);
 	ft_decay(env);
-	printf("chainTime: %Lf\n", env->chainTime);
 	return (0);
 }
 
 int		key_release_hook(int keycode, t_env *env)
 {
-	if (keycode == KEY_ESCAPE || keycode == KEY_SHIFT_LEFT)
+	if (keycode == KEY_ESCAPE)
 		;
 /*	else if (keycode == KEY_W)
 		env->keys.up = 1;
@@ -56,6 +55,8 @@ int		key_release_hook(int keycode, t_env *env)
 	env->keys.right = 1;*/
 	if (keycode == KEY_SPACEBAR)
 		env->keys.startChain = 0;
+	else if (keycode == KEY_SHIFT_LEFT)
+		env->keys.targetFriendly = 0;
 	return (0);
 }
 
@@ -75,6 +76,8 @@ int		key_press_hook(int keycode, t_env *env)
 		env->keys.right = 1;
 	else if (keycode == KEY_E)
 		env->keys.toggleMode = 1;
+	else if (keycode == KEY_SHIFT_LEFT)
+		env->keys.targetFriendly = 1;
 	return (0);
 }
 
@@ -84,18 +87,37 @@ void			ft_battleControl(t_env *env)
 	{
 		if (env->keys.targetFriendly)
 			env->targetFriendly = 1;
+		else
+			env->targetFriendly = 0;
 		if (env->keys.left)
+		{
 			env->target = 0;
+			env->keys.left = 0;
+		}
 		else if (env->keys.up)
+		{
 			env->target = 1;
+			env->keys.up = 0;
+		}
 		else if (env->keys.down)
+		{
 			env->target = 2;
+			env->keys.down = 0;
+		}
 		else if (env->keys.right)
+		{
 			env->target = 3;
+			env->keys.right = 0;
+		}
 		if (env->keys.toggleMode)
 		{
 			env->inBattle = 0;
 			env->keys.toggleMode = 0;
+		}
+		if (!env->turnTime)
+		{
+			env->turnTime = 4.0;
+			env->whoseTurn = (env->whoseTurn ? 0 : 1);
 		}
 //		if (env->keys.leftNormal)
 //			player_leftNormal(env);

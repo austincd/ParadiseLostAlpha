@@ -16,7 +16,6 @@ void	ft_expire(t_env *env, long double *value)
 {
 	if (env && value)
 	{
-		printf("env->tickLength = %d\n", env->tickLength);
 		if (*value <= ((double)env->tickLength / 1000))
 			*value = 0;
 		else

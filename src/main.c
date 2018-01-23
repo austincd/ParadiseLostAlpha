@@ -60,7 +60,12 @@ int main()
 	env.textures[0] = loadImage(texture.fd, 32, 32);
 	ft_strcpy(texture.path, "assets/images/arrowDown");
 	texture.fd = ft_open_file(texture.path);
-	env.textures[1] = loadImage(texture.fd, 32, 32);
+	env.textures[1] = rotateImage(env.textures[0]);
+	env.textures[2] = loadImage(texture.fd, 32, 32);
+	env.textures[3] = rotateImage(env.textures[2]);
+	ft_strcpy(texture.path, "assets/images/form");
+	texture.fd = ft_open_file(texture.path);
+	env.textures[4] = loadImage(texture.fd, 32, 32);
 	color1.r = 100;
 	color1.g = 150;
 	color1.b = 100;

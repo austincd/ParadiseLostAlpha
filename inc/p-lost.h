@@ -132,6 +132,7 @@ typedef struct	s_env
 	int tickRate;
 	t_tex		textures[32];
 	t_pix		texPalette[32];
+	char		whoseTurn;
 }				t_env;
 
 typedef struct	s_option
@@ -179,6 +180,7 @@ void	ft_moveRight(t_env *env);
 void	loadFloor(t_env *env);
 void	readFloor(t_env *env);
 t_tex	loadImage(int fd, int resX, int resY);
+t_tex	rotateImage(t_tex image);
 void	applyImage(t_env *env, t_frame *frame, int x1, int y1, t_tex img);
 
 #endif

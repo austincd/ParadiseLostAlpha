@@ -47,3 +47,32 @@ void		applyImage(t_env *env, t_frame *frame, int x1, int y1, t_tex img)
 		++y;
 	}
 }
+
+t_tex rotateImage(t_tex image)
+{
+	t_tex	rotated;
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	ft_bzero(&rotated, sizeof(t_tex));
+	rotated.resX = image.resY;
+	rotated.resY = image.resX;
+	rotated.data = (char**)ft_memalloc(sizeof(char*) * rotated.resY);
+	if (rotated.data && image.data)
+	{
+		while (y < rotated.resY)
+		{
+			rotated.data[y] = ft_strnew(rotated.resX);
+			while (x < rotated.resX)
+			{
+				rotated.data[y][x] = image.data[x][y];
+				++x;
+			}
+			x = 0;
+			++y;
+		}
+	}
+	return (rotated);
+}
