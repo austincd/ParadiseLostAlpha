@@ -20,7 +20,7 @@ void	drawBattleUnderlay(t_env *env, t_frame *frame)
 		drawVertical(env, frame, frame->resY - (frame->resY / 12 + frame->resY / 6), frame->resY - ((frame->resY / 12)), frame->resX / 8 + (frame->resX / 16) * 9);
 		if (env->inBattle)
 			applyImage(env, frame, 96, 96, env->textures[4]);
-		if (!env->whoseTurn)
+		if (env->inBattle)
 			coloredRectangles(env, frame);
 //		printf("turnTime left:%Lf\n", env->turnTime);
 		if (env->target == 0)
@@ -47,13 +47,13 @@ void	coloredRectangles(t_env *env, t_frame *frame)
 		{
 			alpha.x = 64 + (96 * counter);
 			beta.x = alpha.x + 96;
-			if (env->enemyParty[counter].active)
+			if (env->enemyParty[counter].active && env->whoseTurn)
 			{
-				alpha.y = 138;
-				beta.y = 256;
+				alpha.y = 128;
+				beta.y = 258;
 				fillRect(env, frame, alpha, beta, (env->enemyParty[counter].color));
 			}
-			if (env->alliedParty[counter].active)
+			if (env->alliedParty[counter].active && !env->whoseTurn)
 			{
 				alpha.y = 257;
 				beta.y = 385;

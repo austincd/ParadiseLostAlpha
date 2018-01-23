@@ -1,3 +1,5 @@
+#include "../inc/p-lost.h"
+
 void	menu(t_env *env, t_frame *frame, t_menu menu)
 {
 	int	counter;
@@ -5,9 +7,19 @@ void	menu(t_env *env, t_frame *frame, t_menu menu)
 	counter = 0;
 	if (env && frame)
 	{
-		while (counter < menu.numLines)
+		while (counter < 10)
 		{
-			mlx_string_put(env->mlx.mlx, env->mlx.win, 536, WHITE, menu.lines[counter]);
+			if (menu.lines[counter])
+				fontRender(env, frame, &(env->font), menu.lines[counter], 20, 20 * (counter + 1));
+			++counter;
 		}
+		counter = 0;
+		while (counter < 2)
+		{
+			if (menu.options[counter].text[0])
+				fontRender(env, frame, &(env->font), menu.options[counter].text, 50, 300 + (20 * (counter + 1)));
+			++counter;
+		}
+		env->inMenu = 1;
 	}
 }

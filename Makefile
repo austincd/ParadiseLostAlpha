@@ -23,7 +23,10 @@ SRCS = \
 		move.c	\
 		loading.c		\
 		imageTools.c	\
-		chain.c
+		chain.c		\
+		font.c	\
+		menu.c	\
+		menus.c
 
 all: $(NAME)
 

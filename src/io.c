@@ -32,6 +32,8 @@ int		ft_loop(t_env *env)
 	drawGrid(env, env->views);
 	drawBattleUnderlay(env, env->views + 1);
 	drawViews(env);
+	if (env->inMenu)
+		ft_menuControl(env);
 	if (env->inBattle)
 		ft_battleControl(env);
 	else
@@ -57,6 +59,10 @@ int		key_release_hook(int keycode, t_env *env)
 		env->keys.startChain = 0;
 	else if (keycode == KEY_SHIFT_LEFT)
 		env->keys.targetFriendly = 0;
+	else if (keycode == KEY_1)
+		env->keys.one = 0;
+	else if (keycode == KEY_2)
+		env->keys.two = 0;
 	return (0);
 }
 
@@ -74,6 +80,10 @@ int		key_press_hook(int keycode, t_env *env)
 		env->keys.down = 1;
 	else if (keycode == KEY_D)
 		env->keys.right = 1;
+	else if (keycode == KEY_1)
+		env->keys.one = 1;
+	else if (keycode == KEY_2)
+		env->keys.two = 1;
 	else if (keycode == KEY_E)
 		env->keys.toggleMode = 1;
 	else if (keycode == KEY_SHIFT_LEFT)
@@ -162,6 +172,27 @@ void			ft_dungeonControl(t_env *env)
 		if (!env->chainTime && env->keys.startChain)
 			startChain(env);
 	}
+}
+
+void			ft_menuControl(t_env *env)
+{
+	t_menu *ptr;
+	if (env)
+	{
+		ptr = (t_menu*)env->menuPtr;
+		if (env->keys.one)
+		{
+			(ptr->options[0].effect)(env);
+		}
+		if (env->keys.two)
+		{
+			(ptr->options[1].effect)(env);
+		}
+	}
+}
+
+void callExit(t_env *env) {
+	exit_hook(env);
 }
 
 int		exit_hook(t_env *env)

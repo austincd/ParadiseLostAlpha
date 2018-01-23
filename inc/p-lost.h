@@ -56,6 +56,14 @@ typedef struct  s_tex{
 	char	**data;
 }				t_tex;
 
+typedef struct  s_font{
+	t_tex alpha[26];
+	t_tex space;
+	t_tex period;
+	t_tex hyphen;
+	int size;
+}				t_font;
+
 typedef struct  s_frame{
 	int     resX;
 	int     resY;
@@ -97,6 +105,8 @@ typedef struct	s_kb
 	char		leftSpecial;
 	char		rightNormal;
 	char		rightSpecial;
+	char		one;
+	char        two;
 }				t_kb;
 
 /*typedef struct	s_party
@@ -108,7 +118,7 @@ typedef struct	s_file
 	char	path[64];
 	int		fd;
 }				t_file;
-	
+
 typedef struct	s_env
 {
 	int posX;
@@ -122,6 +132,9 @@ typedef struct	s_env
 	t_floor 	floor;
 	int			target;
 	int			inBattle;
+	int			inMenu;
+	t_font		font;
+	void   *menuPtr;
 	int			targetFriendly;
 	long double		chainTime;
 	long double		turnTime;
@@ -149,6 +162,15 @@ typedef struct	s_menu
 	int			numLines;
 }				t_menu;
 
+void fontRender(t_env *env, t_frame *frame, t_font *font, char *line, int x1, int y1);
+void loadFont(t_env *env);
+void	menu(t_env *env, t_frame *frame, t_menu menu);
+t_menu	startMenu(void);
+void    startGame(t_env *env);
+void                    ft_menuControl(t_env *env);
+
+
+
 void	startChain(t_env *env);
 void	drawBorder(t_env *env, t_frame *frame);
 void	drawViews(t_env *env);
@@ -157,6 +179,7 @@ int		key_press_hook(int keycode, t_env *env);
 int     ft_loop(t_env *env);
 void    ft_battleControl(t_env *env);
 void            ft_dungeonControl(t_env *env);
+void callExit(t_env *env);
 int     exit_hook(t_env *env);
 void        ft_hooks(t_env *env);
 void	ft_startChain(t_env *env);

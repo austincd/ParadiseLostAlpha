@@ -41,7 +41,7 @@ void	drawViews(t_env *env)
 	ft_framebuffer_forget(env, env->views);
 	ft_framebuffer_forget(env, env->views + 1);
 	ft_framebuffer_forget(env, env->views + 2);
-	ft_framebuffer_forget(env, env->views + 3);
+	//ft_framebuffer_forget(env, env->views + 3);
 }
 
 int main()
@@ -91,11 +91,32 @@ int main()
 	env.alliedParty[1].active = 1;
 	env.alliedParty[2].active = 1;
 	env.alliedParty[3].active = 1;
+	color1.b = 100;
+	color1.g = 150;
+	color1.r = 100;
+	color2.b = 120;
+	color2.r = 180;
+	color2.g = 100;
+	color3.b = 0;
+	color3.r = 30;
+	color3.g = 70;
+	color4.b = 30;
+	color4.g = 5;
+	color4.r = 5;
+	env.enemyParty[0].color = color4;
+	env.enemyParty[1].color = color2;
+	env.enemyParty[2].color = color3;
+	env.enemyParty[3].color = color1;
+	env.enemyParty[0].active = 1;
+	env.enemyParty[1].active = 1;
+	env.enemyParty[2].active = 1;
+	env.enemyParty[3].active = 1;
 	color1.r = 255;
 	color1.g = 255;
 	color1.b = 255;
 	env.texPalette[0] = color1;
 	env.texPalette[1] = color1;
+//	menu(&env, env.views + 3, startMenu());
 	mlx_loop(env.mlx.mlx);
 }
 
