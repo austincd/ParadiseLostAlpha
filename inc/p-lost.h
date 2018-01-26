@@ -58,6 +58,7 @@ typedef struct  s_tex{
 
 typedef struct  s_font{
 	t_tex alpha[26];
+	t_tex digits[10];
 	t_tex space;
 	t_tex period;
 	t_tex hyphen;

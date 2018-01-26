@@ -30,8 +30,13 @@ void loadFont(t_env *env)
 		env->font.alpha[23] = loadImage(ft_open_file("assets/font/x"), 12, 12);
 		env->font.alpha[24] = loadImage(ft_open_file("assets/font/y"), 12, 12);
 		env->font.alpha[25] = loadImage(ft_open_file("assets/font/z"), 12, 12);
+		env->font.digits[1] = loadImage(ft_open_file("assets/font/1"), 12, 12);
+		env->font.digits[2] = loadImage(ft_open_file("assets/font/2"), 12, 12);
+		env->font.digits[3] = loadImage(ft_open_file("assets/font/3"), 12, 12);
+		env->font.digits[4] = loadImage(ft_open_file("assets/font/4"), 12, 12);
 		env->font.period = loadImage(ft_open_file("assets/font/period"), 12, 12);
 		env->font.space = loadImage(ft_open_file("assets/font/space"), 12, 12);
+		env->font.hyphen = loadImage(ft_open_file("assets/font/hyphen"), 12, 12);
 		env->font.size = 12;
 	}
 }
@@ -46,6 +51,10 @@ static t_tex	selectChar(t_font *font, char c)
 			return (font->period);
 		else if (c == '-')
 			return (font->hyphen);
+		else if (c == '1')
+			return (font->digits[1]);
+		else if (c == '2')
+			return (font->digits[2]);
 	}
 	return (font->space);
 }

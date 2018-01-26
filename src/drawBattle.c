@@ -19,7 +19,16 @@ void	drawBattleUnderlay(t_env *env, t_frame *frame)
 		drawVertical(env, frame, frame->resY - (frame->resY / 12 + frame->resY / 6), frame->resY - ((frame->resY / 12)), frame->resX / 8 + (frame->resX / 16) * 6);
 		drawVertical(env, frame, frame->resY - (frame->resY / 12 + frame->resY / 6), frame->resY - ((frame->resY / 12)), frame->resX / 8 + (frame->resX / 16) * 9);
 		if (env->inBattle)
-			applyImage(env, frame, 96, 96, env->textures[4]);
+		{
+			applyImage(env, frame, 100, 110, env->font.digits[1]);
+			applyImage(env, frame, 100 * 2, 110, env->font.digits[2]);
+			applyImage(env, frame, 100 * 3, 110, env->font.digits[3]);
+			applyImage(env, frame, 100 * 4, 110, env->font.digits[4]);
+			applyImage(env, frame, 100, 450, env->font.digits[1]);
+			applyImage(env, frame, 100 * 2, 450, env->font.digits[2]);
+			applyImage(env, frame, 100 * 3, 450, env->font.digits[3]);
+			applyImage(env, frame, 100 * 4, 450, env->font.digits[4]);
+		}
 		if (env->inBattle)
 			coloredRectangles(env, frame);
 //		printf("turnTime left:%Lf\n", env->turnTime);
