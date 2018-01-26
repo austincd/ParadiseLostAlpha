@@ -32,9 +32,10 @@ int		ft_loop(t_env *env)
 	drawGrid(env, env->views);
 	drawBattleUnderlay(env, env->views + 1);
 	drawViews(env);
+	menu(env, env->views + 2, env->menuPtr);
 	if (env->inMenu)
 		ft_menuControl(env);
-	if (env->inBattle)
+	else if (env->inBattle)
 		ft_battleControl(env);
 	else
 		ft_dungeonControl(env);

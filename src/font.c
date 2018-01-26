@@ -40,7 +40,7 @@ static t_tex	selectChar(t_font *font, char c)
 {
 	if (font && c)
 	{
-		if (ft_isalpha(c))
+		if (c >= 'A' && c <= 'Z')
 			return (font->alpha[c - 'A']);
 		else if (c == '.')
 			return (font->period);
@@ -68,7 +68,9 @@ void fontRender(t_env *env, t_frame *frame, t_font *font, char *line, int x1, in
 		{
 			charRender = selectChar(font, line[counter]);
 			x += font->size + 1;
+//			printf("x = %d\nfont->size = %d\n", x, font->size);
 			applyImage(env, frame, x, y, charRender);
+//			printf("appliedimage!\n");
 			++counter;
 		}
 	}

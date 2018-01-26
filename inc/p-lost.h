@@ -164,8 +164,8 @@ typedef struct	s_menu
 
 void fontRender(t_env *env, t_frame *frame, t_font *font, char *line, int x1, int y1);
 void loadFont(t_env *env);
-void	menu(t_env *env, t_frame *frame, t_menu menu);
-t_menu	startMenu(void);
+void	menu(t_env *env, t_frame *frame, t_menu *menu);
+t_menu	*startMenu(void);
 void    startGame(t_env *env);
 void                    ft_menuControl(t_env *env);
 

@@ -33,15 +33,19 @@ void	drawViews(t_env *env)
 		drawBorder(env, env->views + 1);
 		drawBorder(env, env->views + 2);
 		drawBorder(env, env->views + 3);
-		mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[0].framePtr, 0, 0);
-		mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[1].framePtr, env->resX / 2, 0);
-		mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[2].framePtr, 0, env->resY / 2);
+//		fontRender(env, env->views + 2, &(env->font), ft_strdup("HELLO LOVE"), 40, 200);
+		if (!env->inBattle && !env->inMenu)
+			mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[0].framePtr, 0, 0);
+		else if (!env->inMenu)
+			mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[1].framePtr, env->resX / 2, 0);
+		else if (env->inMenu)
+			mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[2].framePtr, 0, env->resY / 2);
 		mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[3].framePtr, env->resX / 2, env->resY / 2);
 	}
 	ft_framebuffer_forget(env, env->views);
 	ft_framebuffer_forget(env, env->views + 1);
 	ft_framebuffer_forget(env, env->views + 2);
-	//ft_framebuffer_forget(env, env->views + 3);
+	ft_framebuffer_forget(env, env->views + 3);
 }
 
 int main()
@@ -116,7 +120,9 @@ int main()
 	color1.b = 255;
 	env.texPalette[0] = color1;
 	env.texPalette[1] = color1;
-//	menu(&env, env.views + 3, startMenu());
+	loadFont(&env);
+	env.menuPtr = (void*)startMenu();
+	env.inMenu = 1;
 	mlx_loop(env.mlx.mlx);
 }
 
