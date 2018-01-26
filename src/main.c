@@ -34,6 +34,10 @@ void	drawViews(t_env *env)
 		drawBorder(env, env->views + 2);
 		drawBorder(env, env->views + 3);
 //		fontRender(env, env->views + 2, &(env->font), ft_strdup("HELLO LOVE"), 40, 200);
+		fontRender(env, env->views, &env->font, "DUNGEON VIEW", 12, 494);
+		fontRender(env, env->views + 1, &env->font, "BATTLE VIEW", 12, 494);
+		fontRender(env, env->views + 2, &env->font, "MENU VIEW", 12, 494);
+		fontRender(env, env->views + 3, &env->font, "LOG VIEW", 12, 494);
 		if (!env->inBattle && !env->inMenu)
 			mlx_put_image_to_window(env->mlx.mlx, env->mlx.win, env->views[0].framePtr, 0, 0);
 		else if (!env->inMenu)
