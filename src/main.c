@@ -23,6 +23,12 @@ void	prepare(t_env *env)
 		env->views[counter].frameData = (unsigned int *)mlx_get_data_addr(env->views[counter].framePtr, &(env->mlx.bppx), &(env->mlx.bpln), &(env->mlx.endi));
 		++counter;
 	}
+	counter = 0;
+	while (counter < 36)
+	{
+		env->log[counter] = ft_strnew(36);
+		++counter;
+	}
 }
 
 void	drawViews(t_env *env)
@@ -34,6 +40,7 @@ void	drawViews(t_env *env)
 		drawBorder(env, env->views + 2);
 		drawBorder(env, env->views + 3);
 //		fontRender(env, env->views + 2, &(env->font), ft_strdup("HELLO LOVE"), 40, 200);
+		drawLog(env);
 		fontRender(env, env->views, &env->font, "DUNGEON VIEW", 12, 494);
 		fontRender(env, env->views + 1, &env->font, "BATTLE VIEW", 12, 494);
 		fontRender(env, env->views + 2, &env->font, "MENU VIEW", 12, 494);

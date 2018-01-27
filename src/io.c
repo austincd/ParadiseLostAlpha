@@ -33,8 +33,11 @@ int		ft_loop(t_env *env)
 	drawBattleUnderlay(env, env->views + 1);
 	drawViews(env);
 	menu(env, env->views + 2, env->menuPtr);
-	if (env->floor.map[env->posY][env->posX] == 2)
+	if (env->floor.map[env->posY][env->posX] == 2 && !env->inBattle)
+	{
+		consoleLog(env, "ENTERED BATTLE!");
 		env->inBattle = 1;
+	}
 	if (env->inMenu)
 		ft_menuControl(env);
 	else if (env->inBattle)

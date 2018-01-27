@@ -124,6 +124,7 @@ typedef struct	s_env
 {
 	int posX;
 	int posY;
+	char	*log[36];
 	t_frame	views[4];
 	t_file		tileFile;
 	int			gridSize;
@@ -170,7 +171,8 @@ t_menu	*startMenu(void);
 void    startGame(t_env *env);
 void                    ft_menuControl(t_env *env);
 
-
+void drawLog(t_env *env);
+void consoleLog(t_env *env, char *str);
 
 void	startChain(t_env *env);
 void	drawBorder(t_env *env, t_frame *frame);

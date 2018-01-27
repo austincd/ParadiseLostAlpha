@@ -26,7 +26,8 @@ SRCS = \
 		chain.c		\
 		font.c	\
 		menu.c	\
-		menus.c
+		menus.c	\
+		log.c
 
 all: $(NAME)
 
