@@ -164,6 +164,7 @@ typedef struct	s_menu
 	int			numLines;
 }				t_menu;
 
+void drawGridSquare(t_env *env, t_frame *frame, int x, int y, t_tex image);
 void fontRender(t_env *env, t_frame *frame, t_font *font, char *line, int x1, int y1);
 void loadFont(t_env *env);
 void	menu(t_env *env, t_frame *frame, t_menu *menu);

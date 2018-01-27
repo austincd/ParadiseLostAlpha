@@ -16,17 +16,26 @@ void	fillGridSquare(t_env *env, t_frame *frame, int x, int y, t_pix color)
 	}
 }
 
+void drawGridSquare(t_env *env, t_frame *frame, int x, int y, t_tex image)
+{
+	t_pt	origin;
+
+	if (env && frame)
+	{
+		origin.x = env->gridSize / 2 + 1;
+		origin.y = env->gridSize / 2 + 1;
+		origin.x += (env->gridSize * x);
+		origin.y += (env->gridSize * y);
+		applyImage(env, frame, origin.x, origin.y, image);
+	}
+}
+
 void	drawSelf(t_env *env, t_frame *frame)
 {
-	t_pix	color;
-
-	color.r = 255;
-	color.g = 255;
-	color.b = 255;
 	if (env && frame)
 	{
 		drawFloor(env, frame);
-		fillGridSquare(env, frame, env->posX, env->posY, color);
+		drawGridSquare(env, frame, env->posX, env->posY, env->textures[5]);
 	}
 }
 

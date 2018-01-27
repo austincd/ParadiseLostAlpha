@@ -81,6 +81,7 @@ int main()
 	ft_strcpy(texture.path, "assets/images/form");
 	texture.fd = ft_open_file(texture.path);
 	env.textures[4] = loadImage(texture.fd, 32, 32);
+	env.textures[5] = loadImage(ft_open_file("assets/images/party"), 16, 16);
 	color1.r = 100;
 	color1.g = 150;
 	color1.b = 100;
