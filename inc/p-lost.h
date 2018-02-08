@@ -73,10 +73,19 @@ typedef struct  s_frame{
 	void	*frameData;
 }				t_frame;
 
+typedef struct		s_op
+{
+	char			operation;
+	long double		operand;
+}					t_op;
+
 typedef struct		s_statEffect
 {
-	int				HP;
-	int				SP;
+	t_op			HP;
+	t_op			SP;
+	t_op			mass;
+	t_op			expertise;
+	t_op			invitation;
 }					t_statEffect;
 
 typedef struct		s_statEvent
@@ -99,6 +108,9 @@ typedef struct		s_combatant
 	char			name[32];
 	int 			HP;
 	int 			SP;
+	int 			mass;
+	int 			expertise;
+	int 			invitation;
 	t_pix			color;
 	t_instrument	*left;
 	t_instrument	*right;
@@ -185,6 +197,9 @@ typedef struct	s_menu
 	int			numOptions;
 	int			numLines;
 }				t_menu;
+
+void	statEffect_apply(t_combatant *applyTo, t_statEffect *effect);
+
 
 void drawGridSquare(t_env *env, t_frame *frame, int x, int y, t_tex image);
 void fontRender(t_env *env, t_frame *frame, t_font *font, char *line, int x1, int y1);

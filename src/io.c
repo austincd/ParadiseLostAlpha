@@ -136,13 +136,13 @@ void			ft_battleControl(t_env *env)
 			env->whoseTurn = (env->whoseTurn ? 0 : 1);
 		}
 		if (env->keys.1)
-			player_leftNormal(env);
+			playerAction(env, 0);
 		else if (env->keys.2)
-			player_leftSpecial(env);
+			playerAction(env, 1);
 		else if (env->keys.3)
-			player_rightNormal(env);
+			playerAction(env, 2);
 		else if (env->keys.4)
-			player_rightSpecial(env);
+			playerAction(env, 3);
 	}
 }
 
