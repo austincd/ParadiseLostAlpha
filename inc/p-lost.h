@@ -5,6 +5,7 @@
 # include "../minilibx/mlx.h"
 # include "../minilibx/mlx_keys_macos.h"
 # define WHITE 0xFFFFFF
+# define LIMIT_INSTRUMENTS 16
 
 
 typedef struct	s_pix{
@@ -72,15 +73,29 @@ typedef struct  s_frame{
 	void	*frameData;
 }				t_frame;
 
+typedef struct		s_statEffect
+{
+	int				HP;
+	int				SP;
+}					t_statEffect;
+
+typedef struct		s_instrument
+{
+	char			exists;
+	char			name[32];
+	t_statEffect	normal;
+	t_statEffect	special;
+}					t_instrument;
+
 typedef struct		s_combatant
 {
 	char			active;
-	char		name[32];
+	char			name[32];
 	int 			HP;
 	int 			SP;
 	t_pix			color;
-//	t_instrument	*left;
-//	t_instrument	*right;
+	t_instrument	*left;
+	t_instrument	*right;
 }					t_combatant;
 
 typedef struct  s_mlx{
@@ -142,6 +157,7 @@ typedef struct	s_env
 	long double		turnTime;
 	t_combatant		alliedParty[4];
 	t_combatant		enemyParty[4];
+	t_instrument	instruments[LIMIT_INSTRUMENTS];
 	int tickLength;
 	t_kb	keys;
 	int tickRate;

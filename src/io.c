@@ -135,14 +135,14 @@ void			ft_battleControl(t_env *env)
 			env->turnTime = 4.0;
 			env->whoseTurn = (env->whoseTurn ? 0 : 1);
 		}
-//		if (env->keys.leftNormal)
-//			player_leftNormal(env);
-//		else if (env->keys.leftSpecial)
-//			player_leftSpecial(env);
-//		else if (env->keys.rightNormal)
-//			player_rightNormal(env);
-//		else if (env->keys.rightSpecial)
-//			player_rightSpecial(env);
+		if (env->keys.1)
+			player_leftNormal(env);
+		else if (env->keys.2)
+			player_leftSpecial(env);
+		else if (env->keys.3)
+			player_rightNormal(env);
+		else if (env->keys.4)
+			player_rightSpecial(env);
 	}
 }
 

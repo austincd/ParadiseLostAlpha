@@ -1,62 +1,60 @@
 #include "../inc/p-lost.h"
 
 
-static void		ft_playerTurn(t_plost *env)
+void		playerAction(t_env *env, int action)
 {
-	double	timeLeft;
+	t_combatant *target;
+	t_combatant *self;
 
-	env->timeLeft = 4.0;
-	while (env->timeLeft >= 0.1)
-	{
-		
-	}
+	self = env->alliedParty + env->activeAlly;
+	if (env->targetFriendly)
+		target = env->alliedParty + env->target;
+	else
+		target = env->enemyParty + env->target;
+	if (action == 0)
+		player_rightNormal(self, target);
 }
-static void		ft_enemyTurn(t_plost *env);
+//static void		ft_enemyTurn(t_plost *env);
 
 void	battle()
 {
-	while (!complete)
-	{
 		ft_playerTurn(env);
 		ft_enemyTurn(env);
-	}
 }
 
-static void		ft_rightNormal(t_combatant *user, t_combatant *target)
+static void		player_rightNormal(t_combatant *user, t_combatant *target)
 {
 	if (user && target)
 	{
-		target->hp += user->right.normalEffects.hp;
-		target->sp += user->right.normalEffects.sp;
+		statEffect_apply(user, &user->left.special.cost);
+		statEffect_apply(target, &user->left.special.effect);
 	}
 }
 
-static void		ft_rightSpecial(t_combatant *user, t_combatant *target)
+static void		player_rightSpecial(t_combatant *user, t_combatant *target)
 {
-	if (user && target && user->sp >= user->right.spCost)
+	if (user && target && user->sp > 0)
 	{
-		user->sp -= user->right.spCost;
-		target->hp += user->right.specialEffects.hp;
-		target->sp += user->right.specialEffects.sp;
+		statEffect_apply(user, &user->right.special.cost);
+		statEffect_apply(target, &user->right.special.effect);
 	}
 }
 
-static void		ft_leftNormal(t_combatant *user, t_combatant *target)
+static void		player_leftNormal(t_combatant *user, t_combatant *target)
 {
 	if (user && target)
 	{
-		target->hp += user->left.normalEffects.hp;
-		target->sp += user->left.normalEffects.sp;
+		statEffect_apply(user, &user->left.special.cost);
+		statEffect_apply(target, &user->left.special.effect);
 	}
 }
 
-static void		ft_leftSpecial(t_combatant *user, t_combatant *target)
+static void		player_leftSpecial(t_combatant *user, t_combatant *target)
 {
-	if (user && target && user->sp >= user->right.spCost)
+	if (user && target && user->sp > 0)
 	{
-		user->sp -= user->left.spCost;
-		target->hp += user->left.specialEffects.hp;
-		target->sp += user->left.specialEffects.sp;
+		statEffect_apply(user, &user->left.special.cost);
+		statEffect_apply(target, &user->left.special.effect);
 	}
 }
 

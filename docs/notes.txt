@@ -1,0 +1,41 @@
+void ft_instrumentNormal(t_combatant *user, t_combatant *target, char hand)
+{
+	if (user && target)
+	{
+		if (hand)
+		{
+			user->HP += user->right.normalHPCost;
+			user->SP += user->right.normalSPCost;
+			target->HP += user->right.normalHPeffect;
+			target->SP += user->right.normalSPeffect;
+		}
+		else
+		{
+			user->HP += user->left.normalHPCost;
+			user->SP += user->left.normalSPCost;
+			target->HP += user->left.normalHPeffect;
+			target->SP += user->left.normalSPeffect;
+		}
+	}
+}
+
+void ft_instrumentSpecial(t_combatant *user, t_combatant *target, char hand)
+{
+	if (user && target)
+	{
+		if (hand)
+		{
+			user->HP += user->right.specialHPCost;
+			user->SP += user->right.specialSPCost;
+			target->HP += user->right.specialHPeffect;
+			target->SP += user->right.specialSPeffect;
+		}
+		else
+		{
+			user->HP += user->left.specialHPCost;
+			user->SP += user->left.specialSPCost;
+			target->HP += user->left.specialHPeffect;
+			target->SP += user->left.specialSPeffect;
+		}
+	}
+}
