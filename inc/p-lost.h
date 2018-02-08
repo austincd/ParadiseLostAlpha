@@ -79,12 +79,18 @@ typedef struct		s_statEffect
 	int				SP;
 }					t_statEffect;
 
+typedef struct		s_statEvent
+{
+	t_statEffect	cost;
+	t_statEffect	effect;
+}					t_statEvent;
+
 typedef struct		s_instrument
 {
 	char			exists;
 	char			name[32];
-	t_statEffect	normal;
-	t_statEffect	special;
+	t_statEvent		normal;
+	t_statEvent		special;
 }					t_instrument;
 
 typedef struct		s_combatant

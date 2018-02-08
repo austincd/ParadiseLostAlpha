@@ -13,6 +13,9 @@ void		playerAction(t_env *env, int action)
 		target = env->enemyParty + env->target;
 	if (action == 0)
 		player_rightNormal(self, target);
+	updateCombatant(target);
+	updateCombatant(self);
+	battleCheck(env);
 }
 //static void		ft_enemyTurn(t_plost *env);
 
