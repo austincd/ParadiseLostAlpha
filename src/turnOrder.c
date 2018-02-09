@@ -22,6 +22,9 @@ void	updateCombatant(t_combatant *target)
 {
 	if (target)
 	{
+	  target->mass.strength = target->mass.baseValue + ((target->mass.baseValue / 10) * target->mass.buffLevel);
+	  target->expertise.strength = target->expertise.baseValue + ((target->expertise.baseValue / 10) * target->expertise.buffLevel);
+	  target->invitation.strength = target->invitation.baseValue + ((target->invitation.baseValue / 10) * target->invitation.buffLevel);
 		if (target->hp <= 0)
 		{
 			target->hp = 0;

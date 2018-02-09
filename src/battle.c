@@ -19,10 +19,8 @@ void		playerAction(t_env *env, int action)
 }
 //static void		ft_enemyTurn(t_plost *env);
 
-void	battle()
+void	battleCheck()
 {
-		ft_playerTurn(env);
-		ft_enemyTurn(env);
 }
 
 static void		player_rightNormal(t_combatant *user, t_combatant *target)
